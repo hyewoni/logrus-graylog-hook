@@ -95,6 +95,8 @@ func numChunks(b []byte) int {
 func NewWriter(addr string) (*Writer, error) {
 	var err error
 	w := new(Writer)
+	// compress causes low throughput
+	w.CompressionType = NoCompress
 	w.CompressionLevel = flate.BestSpeed
 
 	if w.conn, err = net.Dial("udp", addr); err != nil {

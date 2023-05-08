@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"os"
 	"sync"
-	"time"
 
 	"github.com/sirupsen/logrus"
 )
@@ -237,7 +236,7 @@ func (hook *GraylogHook) sendEntry(entry graylogEntry) {
 		Host:     hook.Host,
 		Short:    string(short),
 		Full:     string(full),
-		TimeUnix: float64(time.Now().UnixNano()/1000000) / 1000.,
+		TimeUnix: float64(entry.Time.UnixNano()/1000000) / 1000.,
 		Level:    level,
 		File:     entry.file,
 		Line:     entry.line,
